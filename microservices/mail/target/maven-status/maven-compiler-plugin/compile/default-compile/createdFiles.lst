@@ -1,0 +1,8 @@
+com/mail/MailApplication.class
+com/mail/model/MailEntity.class
+com/mail/service/MailingService.class
+com/mail/controller/API.class
+com/mail/config/MailConfig.class
+com/mail/dto/MailDTO.class
+com/mail/repo/MailRepo.class
+com/mail/config/SwaggerConfig.class

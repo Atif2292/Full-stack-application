@@ -4,7 +4,9 @@ import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import com.employe.dto.EmployeDTO;
 import com.employe.model.EmployeEntity;
@@ -19,6 +21,28 @@ public class EmployeService {
 	@Autowired
 	private ModelMapper modelMapper;
 
+	
+	private final RestTemplate restTemplate;
+
+    public EmployeService(RestTemplateBuilder builder) {
+        this.restTemplate = builder.build();
+    }
+
+    public String callServiceB(String id) {
+        String url = "http://localhost:8080/api/v1//retriev/" + id; 
+        return restTemplate.getForObject(url, String.class);
+    }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public EmployeDTO addEmploye(EmployeDTO employeDTO) {
 		EmployeEntity employeEntity = modelMapper.map(employeDTO, EmployeEntity.class);
 		employRepo.save(employeEntity);

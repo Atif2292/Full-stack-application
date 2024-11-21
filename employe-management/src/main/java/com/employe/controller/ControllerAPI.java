@@ -9,12 +9,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.employe.dto.EmployeDTO;
 import com.employe.service.EmployeService;
 
 @RestController
+@RequestMapping("/api/v1/employe.")
 public class ControllerAPI {
 
 	@Autowired
@@ -25,6 +27,13 @@ public class ControllerAPI {
 	EmployeDTO emp =	employeService.addEmploye(employe);
 		 return new ResponseEntity<EmployeDTO>(emp, HttpStatus.CREATED);
 
+	}
+	@GetMapping("api/retrieves/{employeId}")
+	public ResponseEntity<String> callService(@PathVariable String employeId ){
+		String getemp =    employeService.callServiceB(employeId);
+		return new ResponseEntity<String>(getemp, HttpStatus.CREATED);
+		
+	
 	}
 	@GetMapping("api/retrieve/{employeId}")
 	public ResponseEntity<EmployeDTO> getEmploye(@PathVariable Long employeId ){
